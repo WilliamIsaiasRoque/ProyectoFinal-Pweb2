@@ -3,8 +3,8 @@ from . import views
 
 urlpatterns = [
     path('', views.pag_main, name='pag_main'),
-    path('post/<int:pk>/', views.post_detail, name='post_detail'),
-    path('post/new/', views.post_new, name='post_new'),
-    path('post/<int:pk>/edit/', views.post_edit, name='post_edit'),
-    path('post/<int:pk>/delete/', views.post_delete, name='post_delete'),
+    path('prods/<int:pk>/', views.prod_detail, name='prod_detail'),
+    path('prods/new/', views.prod_new, name='prod_new'),
+    path('prods/<int:pk>/edit/', views.prod_edit, name='prod_edit'),
+    path('prods/<int:pk>/delete/', views.prod_delete, name='prod_delete'),
 ]
