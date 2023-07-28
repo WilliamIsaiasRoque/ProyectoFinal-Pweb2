@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="post">
+        {% if user.is_authenticated %}
+            <a class="btn btn-default" href="{% url 'prod_edit' pk=prods.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a class="btn btn-default" href="{% url 'prod_delete' pk=prods.pk %}"><span class="glyphicon glyphicon-trash"></span></a>
+        {% endif %}
+        <h2>{{ prods.nombre }}</h2>
+        <p>{{ prods.descripcion|linebreaksbr }}</p>
+        <p>Precio: {{ prods.precio }}</p>
+    </div>
+{% endblock %}
