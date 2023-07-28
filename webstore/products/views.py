@@ -9,11 +9,11 @@ def pag_main(request):
 
 def prod_list(request):
     prods = Productos.objects.all().order_by('nombre')
-    return render(request, '/templates/productos_list.html', {'prods': prods})
+    return render(request, 'productos_list.html', {'prods': prods})
 
 def prod_detail(request, pk):
     prods = get_object_or_404(Productos, pk=pk)
-    return render(request, '/templates/productos_detail.html', {'prods': prods})
+    return render(request, 'productos_detail.html', {'prods': prods})
 
 def prod_new(request):
     if request.method == "POST":
@@ -24,7 +24,7 @@ def prod_new(request):
             return redirect('productos_detail', pk=prods.pk)
     else:
         form = PostForm()
-    return render(request, '/templates/productos_edit.html', {'form': form})
+    return render(request, 'productos_edit.html', {'form': form})
 
 def prod_edit(request, pk):
     prods = get_object_or_404(Productos, pk=pk)
@@ -36,11 +36,11 @@ def prod_edit(request, pk):
             return redirect('prod_detail', pk=prods.pk)
     else:
         form = PostForm(instance=prods)
-    return render(request, '/templates/productos_edit.html', {'form': form})
+    return render(request, 'productos_edit.html', {'form': form})
 
 def prod_delete(request, pk):
     prods = get_object_or_404(Productos, pk=pk)
     if request.method == "POST":
         prods.delete()
         return redirect('productos_list')
-    return render(request, '/templates/productos_delete.html', {'prods': prods})
+    return render(request, 'productos_delete.html', {'prods': prods})
