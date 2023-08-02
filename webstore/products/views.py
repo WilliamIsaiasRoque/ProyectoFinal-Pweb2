@@ -2,17 +2,17 @@ from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 from .forms import PostForm
 from django.shortcuts import redirect
-from .models import Productos
+from .models import Producto
 
 def pag_main(request):
     return render(request, 'index.html')
 
 def prod_list(request):
-    prods = Productos.objects.all().order_by('nombre')
+    prods = Producto.objects.all().order_by('nombre')
     return render(request, 'productos_list.html', {'prods': prods})
 
 def prod_detail(request, pk):
-    prods = get_object_or_404(Productos, pk=pk)
+    prods = get_object_or_404(Producto, pk=pk)
     return render(request, 'productos_detail.html', {'prods': prods})
 
 def prod_new(request):
@@ -27,7 +27,7 @@ def prod_new(request):
     return render(request, 'productos_edit.html', {'form': form})
 
 def prod_edit(request, pk):
-    prods = get_object_or_404(Productos, pk=pk)
+    prods = get_object_or_404(Producto, pk=pk)
     if request.method == "POST":
         form = PostForm(request.POST, instance=prods)
         if form.is_valid():
@@ -39,7 +39,7 @@ def prod_edit(request, pk):
     return render(request, 'productos_edit.html', {'form': form})
 
 def prod_delete(request, pk):
-    prods = get_object_or_404(Productos, pk=pk)
+    prods = get_object_or_404(Producto, pk=pk)
     if request.method == "POST":
         prods.delete()
         return redirect('productos_list')

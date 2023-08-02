@@ -1,8 +1,8 @@
 from django import forms
-from .models import Productos
+from .models import Producto
 
 class PostForm(forms.ModelForm):
 
     class Meta:
-        model = Productos
+        model = Producto
         fields = ('nombre', 'descripcion','precio',)
