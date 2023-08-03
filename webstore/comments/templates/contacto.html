@@ -1,6 +1,15 @@
 {% extends 'index.html' %}
 
 {% block content %}
+
+<div id="comments-list">
+    {% for comment in comments %}
+        <div class="comment">
+            <strong>{{ comment.user.username }} : {{comment.created_at}}</strong>
+            <p>{{ comment.content }}</p>
+        </div>
+    {% endfor %}
+</div>
 <script>
     $(document).ready(function() {
         // Handle form submission via AJAX
@@ -9,7 +18,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: '{% url "add_comment" %}',
+                url: '{% url "add_comments" %}',
                 data: $('#comment-form').serialize(),
                 dataType: 'json',
                 success: function(data) {
@@ -41,16 +50,9 @@
     });
 </script>
 
-<div id="comments-list">
-    {% for comment in comments %}
-        <div class="comment">
-            <strong>{{ comment.user.username }}</strong>
-            <p>{{ comment.content }}</p>
-        </div>
-    {% endfor %}
-</div>
-
-    
+<form id="comment-form" method="post">
+    {% csrf_token %}
+    <textarea name="content" rows="4" cols="50" required></textarea>
+    <button type="submit">Submit Comment</button>
+</form>
 {% endblock %}
-
-{% include 'comentario_form.html' %}

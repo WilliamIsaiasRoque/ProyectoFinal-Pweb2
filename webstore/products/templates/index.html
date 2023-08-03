@@ -34,7 +34,7 @@
         {% if user.is_staff %}
         <a href="{% url 'sell_list' %}">Ventas</a>
         {% endif %}
-        <a href="#">Contacto</a>
+        <a href="{% url 'comment' %}">Contacto</a>
         {% endif %}
     </nav>
 
