@@ -1,45 +1,53 @@
 /* accounts.css */
 
-/* Utiliza el mismo estilo de fuente y reseteo de margen y padding que en styles.css */
-body, h1, h2, h3, h4, h5, h6, p {
+/* Estilo para el body para ocupar toda la altura de la ventana */
+body {
     font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    background-image: url('https://cdn.agendasonidocaracol.mx/Upload/afb83e0118323c1840cc188dc018ec4218211c72.jpg'); /* Agrega el fondo difuminado de la imagen */
+    background-size: cover;
     margin: 0;
     padding: 0;
 }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+/* Estilo para la barra superior horizontal */
+.navbar {
+    background-color: #333;
+    height: 20px;
 }
 
+/* Estilo para el contenedor principal */
 .container {
-    text-align: center;
     max-width: 400px;
+    text-align: center;
+    margin-top: 50px; /* Agrega un margen superior para separar la barra de navegación */
+    background-color: rgba(255, 255, 255, 0.8); /* Agrega fondo blanco con opacidad para el contenido */
+    border-radius: 10px;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Estilo para el título */
 h2 {
-    margin-bottom: 20px; 
+    margin-bottom: 20px; /* Espacio entre el título y los campos */
 }
 
-input, label {
-    margin-bottom: 20px; 
+/* Estilo para los campos de formulario (input y label) */
+input,
+label {
+    margin-bottom: 10px; /* Agrega 10px de espacio entre cada campo */
 }
 
+/* Estilo para los botones */
 button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
+/* Estilo para el enlace "Accede aquí" */
 .blinking-text {
     animation: blinker 1s linear infinite;
 }
@@ -50,8 +58,17 @@ button {
     }
 }
 
+/* Estilos para mensajes de error */
 .error-msg {
     color: red;
     font-weight: bold;
     margin-top: 10px;
+}
+
+/* Estilo para el footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
 }

@@ -7,7 +7,7 @@
     <title>Iniciar Sesión</title>
 </head>
 <body>
-    <div class="centered-container">
+    <div class="container">
         <h2>Iniciar Sesión</h2>
         <form method="post">
             {% csrf_token %}
@@ -20,5 +20,8 @@
         <a href="{% url 'pag_main' %}" class="btn btn-primary">Volver al inicio</a>
         <p>¿Eres cliente? <a href="{% url 'client_login' %}" class="blinking-text">Accede aquí</a>!</p>
     </div>
+    <footer>
+        <p>Tienda Virtual &copy; 2023. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>
