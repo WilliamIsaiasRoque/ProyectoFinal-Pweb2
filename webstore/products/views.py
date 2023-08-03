@@ -5,7 +5,7 @@ from django.shortcuts import redirect
 from .models import Producto
 
 def pag_main(request):
-    return render(request, 'index.html')
+    return render(request, 'inicio.html')
 
 def prod_list(request):
     prods = Producto.objects.all().order_by('nombre')

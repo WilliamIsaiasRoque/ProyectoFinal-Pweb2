@@ -12,29 +12,21 @@
 </head>
 
 <body>
-    <div class="page-header">
-        {% if user.is_authenticated %}
-        <a href="{% url 'prod_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-        {% endif %}
-    </div>
     <header>
-        <h1>Web Store</h1>
+        <div class="page-header">
+            <h1>Web Store</h1>
+        </div>
     </header>
 
     <nav>
-        <a href="#">Inicio</a>
-        <a href="#">Productos</a>
-        <a href="#">Carrito</a>
+        <a href="{% url 'pag_main' %}">Inicio</a>
+        <a href="{% url 'prod_list' %}">Productos</a>
+        {% if user.is_authenticated %}
+        <a href="#">Ventas</a>
+        {% endif %}
         <a href="#">Contacto</a>
     </nav>
 
-    <section>
-        <h2>¡Bienvenido de nuevo, Adrián!! (Nombre del dueño de la tienda)</h2>
-        <p>¡Es un gusto verte!</p>
-        <div style="text-align: center;"> 
-            <img src="https://files.merca20.com/uploads/2020/07/TIENDITA.jpg" alt="Tienda Imagen" width="500">
-        </div>
-    </section>
     <div class="content container">
         <div class="row">
             <div class="col-md-8">
