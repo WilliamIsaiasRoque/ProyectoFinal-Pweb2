@@ -4,6 +4,9 @@ from .forms import PostForm
 from django.shortcuts import redirect
 from .models import Producto
 
+def index(request):
+    return render(request, 'index.html')
+
 def pag_main(request):
     return render(request, 'index.html')
 
