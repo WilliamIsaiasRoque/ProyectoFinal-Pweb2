@@ -1,11 +1,16 @@
 {% extends 'index.html' %}
 
 {% block content %}
-    <section>
-        <h2>¡Bienvenido de nuevo, Adrián!! (Nombre del dueño de la tienda)</h2>
-        <p>¡Es un gusto verte!</p>
-        <div style="text-align: center;"> 
-            <img src="https://files.merca20.com/uploads/2020/07/TIENDITA.jpg" alt="Tienda Imagen" width="500">
-        </div>
-    </section>
+<section>
+    {% if user.is_authenticated %}
+        <h2>¡Bienvenido a la tienda virtual, {{ user.username }}!</h2>
+    {% else %}
+        <h2>¡Bienvenido a la tienda virtual!</h2>
+    {% endif %}
+
+    <p>¡Es un gusto verte!</p>
+    <div style="text-align: center;"> 
+        <img src="https://files.merca20.com/uploads/2020/07/TIENDITA.jpg" alt="Tienda Imagen" width="500">
+    </div>
+</section>
 {% endblock %}
