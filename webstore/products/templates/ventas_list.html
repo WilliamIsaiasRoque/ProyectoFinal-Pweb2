@@ -6,12 +6,18 @@
         <a href="{% url 'sell_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
         {% endif %}
     </div>
-    {% for prod in prods %}
-        
-        <div class="producto">
-            <h2>{{ prod.nombre }}</h2>
-            <p>Precio: {{ prod.precio }}</p>
-            <p>Descripción: {{ prod.descripcion }}</p>
+    {% for sell in sells %} 
+        {% if user.is_staff %}
+                <a class="btn btn-default" href="{% url 'sell_edit' pk=sell.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a class="btn btn-default" href="{% url 'sell_delete' pk=sell.pk %}"><span class="glyphicon glyphicon-trash"></span></a>
+        {% endif %}      
+        <div class="venta">
+            <h2>{{ sell.producto.nombre }}</h2>
+            <p>Fecha de venta: {{ sell.fecha_venta }}</p>
+            <p>Precio p/u: {{ sell.producto.precio }}</p>
+            <p>Cantidad vendida: {{ sell.cantidad }}</p>
+            <p>Precio total: {{ sell.precio_total }}</p>
+            <p>Comprador: {{ sell.comprador }}</p>
         </div>
     {% endfor %}
 {% endblock %}

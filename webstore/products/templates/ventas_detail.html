@@ -1,9 +1,12 @@
 {% extends 'index.html' %}
 
 {% block content %}
-    <div class="post">
-        <h2>{{ sells.nombre }}</h2>
-        <p>{{ sells.descripcion|linebreaksbr }}</p>
-        <p>Precio: {{ sells.precio }}</p>
-    </div>
+<div class="venta">
+    <h2>{{ sell.producto.nombre }}</h2>
+    <p>Fecha de venta: {{ sell.fecha_venta }}</p>
+    <p>Precio p/u: {{ sell.producto.precio }}</p>
+    <p>Cantidad vendida: {{ sell.cantidad }}</p>
+    <p>Precio total: {{ sell.precio_total }}</p>
+    <p>Comprador: {{ sell.comprador }}</p>
+</div>
 {% endblock %}

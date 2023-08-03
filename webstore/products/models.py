@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=200)
@@ -9,6 +10,7 @@ class Producto(models.Model):
         return self.nombre
     
 class VentaProducto(models.Model):
+    comprador = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     cantidad = models.PositiveIntegerField()
     precio_total = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)

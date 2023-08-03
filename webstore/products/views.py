@@ -46,7 +46,7 @@ def prod_delete(request, pk):
     return render(request, 'productos_delete.html', {'prods': prods})
 
 def sell_list(request):
-    sells = Producto.objects.all()
+    sells = VentaProducto.objects.all()
     return render(request, 'ventas_list.html', {'sells': sells})
 
 def sell_new(request):
@@ -56,7 +56,7 @@ def sell_new(request):
             venta_producto = form.save(commit=False)
             venta_producto.calcular_precio_total()  # Calcular el precio total
             venta_producto.save()
-            return redirect('sell_detail', pk=venta_producto.pk)
+            return redirect('sell_list')
     else:
         form = VentaProductoForm()
     return render(request, 'ventas_edit.html', {'form': form})
@@ -64,3 +64,22 @@ def sell_new(request):
 def sell_detail(request, pk):
     sells = get_object_or_404(VentaProducto, pk=pk)
     return render(request, 'ventas_detail.html', {'sells': sells})
+
+def sell_edit(request, pk):
+    sells = get_object_or_404(VentaProducto, pk=pk)
+    if request.method == "POST":
+        form = VentaProductoForm(request.POST, instance=sells)
+        if form.is_valid():
+            sells = form.save(commit=False)
+            sells.save()
+            return redirect('sell_detail', pk=sells.pk)
+    else:
+        form = VentaProductoForm(instance=sells)
+    return render(request, 'ventas_edit.html', {'form': form})
+
+def sell_delete(request, pk):
+    sells = get_object_or_404(VentaProducto, pk=pk)
+    if request.method == "POST":
+        sells.delete()
+        return redirect('sell_list')
+    return render(request, 'ventas_delete.html', {'sells': sells})

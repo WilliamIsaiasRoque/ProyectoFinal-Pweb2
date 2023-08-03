@@ -8,7 +8,7 @@
     </div>
     {% for prod in prods %}
         <div class="producto">
-            {% if user.is_authenticated %}
+            {% if user.is_staff %}
                 <a class="btn btn-default" href="{% url 'prod_edit' pk=prod.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
                 <a class="btn btn-default" href="{% url 'prod_delete' pk=prod.pk %}"><span class="glyphicon glyphicon-trash"></span></a>
             {% endif %}
