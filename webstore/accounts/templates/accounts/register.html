@@ -1,11 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
     <title>Registro</title>
 </head>
 <body>
-    <h2>Registro (Solo para personal autorizado)</h2>
+    <div class="centered-container">
+        <h2>Registro (Solo para personal autorizado)</h2>
     {% if success %}
         <p>¡Registro exitoso!</p>
         <a href="{% url 'pag_main' %}">Volver al inicio</a>
@@ -24,5 +27,6 @@
         </form>
         <a href="{% url 'pag_main' %}">Volver al inicio</a>
     {% endif %}
+    </div>
 </body>
 </html>
