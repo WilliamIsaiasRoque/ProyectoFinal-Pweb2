@@ -21,7 +21,7 @@ def prod_new(request):
         if form.is_valid():
             prods = form.save(commit=False)
             prods.save()
-            return redirect('productos_detail', pk=prods.pk)
+            return redirect('prod_detail', pk=prods.pk)
     else:
         form = PostForm()
     return render(request, 'productos_edit.html', {'form': form})
