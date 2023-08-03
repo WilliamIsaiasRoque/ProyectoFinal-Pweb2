@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
-from .forms import PostForm
+from .forms import PostForm, VentaProductoForm
 from django.shortcuts import redirect
-from .models import Producto
+from .models import Producto, VentaProducto
 
 def pag_main(request):
     return render(request, 'inicio.html')
@@ -42,5 +42,44 @@ def prod_delete(request, pk):
     prods = get_object_or_404(Producto, pk=pk)
     if request.method == "POST":
         prods.delete()
-        return redirect('productos_list')
+        return redirect('prod_list')
     return render(request, 'productos_delete.html', {'prods': prods})
+
+def sell_list(request):
+    sells = VentaProducto.objects.all()
+    return render(request, 'ventas_list.html', {'sells': sells})
+
+def sell_new(request):
+    if request.method == "POST":
+        form = VentaProductoForm(request.POST)
+        if form.is_valid():
+            venta_producto = form.save(commit=False)
+            venta_producto.calcular_precio_total()  # Calcular el precio total
+            venta_producto.save()
+            return redirect('sell_list')
+    else:
+        form = VentaProductoForm()
+    return render(request, 'ventas_edit.html', {'form': form})
+
+def sell_detail(request, pk):
+    sells = get_object_or_404(VentaProducto, pk=pk)
+    return render(request, 'ventas_detail.html', {'sells': sells})
+
+def sell_edit(request, pk):
+    sells = get_object_or_404(VentaProducto, pk=pk)
+    if request.method == "POST":
+        form = VentaProductoForm(request.POST, instance=sells)
+        if form.is_valid():
+            sells = form.save(commit=False)
+            sells.save()
+            return redirect('sell_detail', pk=sells.pk)
+    else:
+        form = VentaProductoForm(instance=sells)
+    return render(request, 'ventas_edit.html', {'form': form})
+
+def sell_delete(request, pk):
+    sells = get_object_or_404(VentaProducto, pk=pk)
+    if request.method == "POST":
+        sells.delete()
+        return redirect('sell_list')
+    return render(request, 'ventas_delete.html', {'sells': sells})
