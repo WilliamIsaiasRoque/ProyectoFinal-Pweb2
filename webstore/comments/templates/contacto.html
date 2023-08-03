@@ -1,0 +1,56 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<script>
+    $(document).ready(function() {
+        // Handle form submission via AJAX
+        $('#comment-form').submit(function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            $.ajax({
+                type: 'POST',
+                url: '{% url "add_comment" %}',
+                data: $('#comment-form').serialize(),
+                dataType: 'json',
+                success: function(data) {
+                    if (data.success) {
+                        // Comment was added successfully, update the page
+                        const commentId = data.comment_id;
+                        const content = $('textarea[name="content"]').val();
+                        const username = '{{ user.username }}';
+
+                        // Append the new comment to the comments list
+                        $('#comments-list').append(
+                            `<div class="comment">
+                                <strong>${username}</strong>
+                                <p>${content}</p>
+                            </div>`
+                        );
+
+                        // Clear the textarea
+                        $('textarea[name="content"]').val('');
+                    } else {
+                        alert('Error: ' + data.error);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    alert('Error occurred. Please try again.');
+                }
+            });
+        });
+    });
+</script>
+
+<div id="comments-list">
+    {% for comment in comments %}
+        <div class="comment">
+            <strong>{{ comment.user.username }}</strong>
+            <p>{{ comment.content }}</p>
+        </div>
+    {% endfor %}
+</div>
+
+    
+{% endblock %}
+
+{% include 'comentario_form.html' %}

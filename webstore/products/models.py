@@ -14,8 +14,7 @@ class VentaProducto(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     cantidad = models.PositiveIntegerField()
     precio_total = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
-    fecha_venta = models.DateTimeField(
-            default=timezone.now)
+    fecha_venta = models.DateTimeField(default=timezone.now)
 
     def calcular_precio_total(self):
         self.precio_total = self.producto.precio * self.cantidad
