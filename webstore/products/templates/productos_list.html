@@ -6,6 +6,7 @@
         <a href="{% url 'prod_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
         {% endif %}
     </div>
+    <div class="seccion">
     {% for prod in prods %}
         <div class="producto">
             {% if user.is_staff %}
@@ -17,4 +18,5 @@
             <p>Descripción: {{ prod.descripcion }}</p>
         </div>
     {% endfor %}
+    </div>
 {% endblock %}
