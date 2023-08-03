@@ -8,7 +8,7 @@
     <h2>Registro (Solo para personal autorizado)</h2>
     {% if success %}
         <p>¡Registro exitoso!</p>
-        <a href="{% url 'index' %}">Volver al inicio</a>
+        <a href="{% url 'pag_main' %}">Volver al inicio</a>
     {% else %}
         <form method="post">
             {% csrf_token %}
