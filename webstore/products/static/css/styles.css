@@ -1,37 +1,44 @@
 /* styles.css */
 body {
-    font-family: Arial, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
 
 header {
-    background-color: #333;
+    background-color: #007BFF;
     color: #fff;
-    padding: 10px;
+    padding: 20px;
     text-align: center;
-    margin-top: -70;
 }
 
 header h1 {
     font-weight: bold;
+    font-size: 28px;
 }
 
 nav {
-    background-color: #444;
+    background-color: #004080;
     color: #fff;
     padding: 10px;
     text-align: center;
 }
 
 nav a {
-    margin: 0 30px;
+    margin: 0 15px;
     text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+}
+
+nav a:hover {
+    text-decoration: underline;
 }
 
 section {
-    padding: 20px;
-    text-align: center;
+    padding: 30px;
+    text-align: justify;
+    line-height: 1.6;
 }
 
 footer {
@@ -42,4 +49,6 @@ footer {
     position: absolute;
     bottom: 0;
     width: 100%;
+    font-size: 14px;
 }
+
