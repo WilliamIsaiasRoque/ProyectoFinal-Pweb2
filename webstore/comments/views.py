@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from django.views.decorators.http import require_POST
 from .models import Comment
+from .forms import EmailForm
 
 # Create your views here.
 def comment(request):
@@ -21,4 +21,13 @@ def add_comments(request):
     else:
         return JsonResponse({'success': False, 'error': 'Content is required.'})
     
-    
+def send_email(request):
+    if request.method == 'POST':
+        form = EmailForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # Agregar el código de envío de correo si lo deseas
+    else:
+        form = EmailForm()
+
+    return render(request, 'send/send_email.html', {'form': form})

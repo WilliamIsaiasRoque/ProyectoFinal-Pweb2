@@ -49,10 +49,19 @@
         });
     });
 </script>
-
+{% if user.is_authenticated %}
 <form id="comment-form" method="post">
     {% csrf_token %}
     <textarea name="content" rows="4" cols="50" required></textarea>
     <button type="submit">Submit Comment</button>
 </form>
+
+<h1>Enviar correo</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enviar</button>
+  </form>
+{% endif %}
+
 {% endblock %}

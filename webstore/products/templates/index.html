@@ -31,12 +31,10 @@
     <nav>
         <a href="{% url 'pag_main' %}">Inicio</a>
         <a href="{% url 'prod_list' %}">Productos</a>
-        {% if user.is_authenticated %}
         {% if user.is_staff %}
         <a href="{% url 'sell_list' %}">Ventas</a>
         {% endif %}
         <a href="{% url 'comment' %}">Contacto</a>
-        {% endif %}
     </nav>
 
     <div class="content container">
