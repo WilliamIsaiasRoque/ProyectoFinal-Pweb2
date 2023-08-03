@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div class="page-header">
+        {% if user.is_staff %}
+        <a href="{% url 'sell_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+        {% endif %}
+    </div>
+    {% for prod in prods %}
+        
+        <div class="producto">
+            <h2>{{ prod.nombre }}</h2>
+            <p>Precio: {{ prod.precio }}</p>
+            <p>Descripción: {{ prod.descripcion }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}

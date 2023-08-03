@@ -1,0 +1,9 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div class="post">
+        <h2>{{ sells.nombre }}</h2>
+        <p>{{ sells.descripcion|linebreaksbr }}</p>
+        <p>Precio: {{ sells.precio }}</p>
+    </div>
+{% endblock %}
