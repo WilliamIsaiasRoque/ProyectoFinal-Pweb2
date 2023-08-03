@@ -13,39 +13,51 @@ body {
     padding: 0;
 }
 
-/* Estilo para la barra superior horizontal */
-.navbar {
+header {
     background-color: #333;
-    height: 20px;
+    color: #fff;
+    padding: 10px;
+    margin-top: -85;
+    text-align: center;
 }
 
 /* Estilo para el contenedor principal */
 .container {
     max-width: 400px;
     text-align: center;
-    margin-top: 50px; /* Agrega un margen superior para separar la barra de navegación */
+    margin: 105px auto;
     background-color: rgba(255, 255, 255, 0.8); /* Agrega fondo blanco con opacidad para el contenido */
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+    border-radius: 60px;
+    padding: 25px;
 
-/* Estilo para el título */
-h2 {
-    margin-bottom: 20px; /* Espacio entre el título y los campos */
 }
 
 /* Estilo para los campos de formulario (input y label) */
-input,
-label {
-    margin-bottom: 10px; /* Agrega 10px de espacio entre cada campo */
+.form-field {
+    margin-bottom: 10px; 
+    border-radius: 1px;
+    text-align: right;
+    float: right;
+    clear: both;
 }
+
+h2 {
+    margin-bottom: 20px; /* Espacio entre el título y los campos */
+    font-size: 20px
+}
+
 
 /* Estilo para los botones */
 button {
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 20px;
 }
+
+a {
+    display: inline-block;
+    margin-top: 20px;
+}
+
 
 /* Estilo para el enlace "Accede aquí" */
 .blinking-text {
@@ -72,3 +84,4 @@ footer {
     padding: 10px;
     text-align: center;
 }
+

@@ -16,13 +16,15 @@
         {% if user.is_authenticated %}
             <a href="{% url 'logout' %}" class="top-menu">Cerrar Sesión</a>
         {% else %}
-            <a href="{% url 'login' %}" class="top-menu">Iniciar Sesión</a>
-            <a href="{% url 'register' %}" class="top-menu">Regístrate</a>
+            <div class="button-container">
+                <a href="{% url 'login' %}" class="top-menu btn btn-primary">Iniciar Sesión</a>
+                <a href="{% url 'register' %}" class="top-menu btn btn-success">Regístrate</a>
+            </div>
         {% endif %}
     </div>
     <header>
         <div class="page-header">
-            <h1>Web Store</h1>
+            <h1><strong>Web Store</strong></h1>
         </div>
     </header>
 
