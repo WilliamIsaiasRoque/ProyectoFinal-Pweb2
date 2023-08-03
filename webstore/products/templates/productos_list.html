@@ -1,13 +1,11 @@
 {% extends 'index.html' %}
 
 {% block content %}
-    {% for post in posts %}
-        <div class="post">
-            <div class="date">
-                {{ post.published_date }}
-            </div>
-            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
-            <p>{{ post.text|linebreaksbr }}</p>
+    {% for prod in prods %}
+        <div class="producto">
+            <h2>{{ prod.nombre }}</h2>
+            <p>Precio: {{ prod.precio }}</p>
+            <p>Descripción: {{ prod.descripcion }}</p>
         </div>
     {% endfor %}
 {% endblock %}
