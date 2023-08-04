@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-    <title>WEB STORE</title>
+    <title>TIENDA</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -24,22 +24,21 @@
     </div>
     <header>
         <div class="page-header">
-            <h1><strong>Web Store</strong></h1>
+            <h1>Tienda San Ricardo</h1>
         </div>
     </header>
-
     <nav>
-        <a href="{% url 'pag_main' %}">Inicio</a>
-        <a href="{% url 'prod_list' %}">Productos</a>
+        <a href="{% url 'pag_main' %}">INICIO</a>
+        <a href="{% url 'prod_list' %}">PRODUCTOS</a>
         {% if user.is_authenticated %}
         {% if user.is_staff %}
-        <a href="{% url 'sell_list' %}">Ventas</a>
+        <a href="{% url 'sell_list' %}">VENTAS</a>
         {% endif %}
-        <a href="{% url 'comment' %}">Comentarios</a>
+        <a href="{% url 'comment' %}">COMENTARIOS</a>
         {% endif %}
     </nav>
 
-    <div class="content container">
+    <div class="productos">
         <div class="row">
             <div class="col-md-8">
             {% block content %}

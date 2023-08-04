@@ -4,20 +4,27 @@ body {
     margin: 0;
     padding: 0;
     background-image: url('https://cdn.agendasonidocaracol.mx/Upload/afb83e0118323c1840cc188dc018ec4218211c72.jpg'); /* Agrega el fondo difuminado de la imagen */
-    background-size: cover;
 }
 
+
 header {
+    position: absolute;
+    top: 0;
+    width: 100%;
     background-color: #333;
     color: #fff;
     padding: 10px;
-    margin-top: -110px;
     text-align: center;
+    z-index: -1;
 }
 
-header h2 {
+h1 {
+    margin: 9;
     font-weight: bold;
-    text-align: justify;
+}
+
+h2 {
+    font-weight: bold;
 }
 
 nav {
@@ -29,6 +36,7 @@ nav {
 
 nav a {
     margin: 0 30px;
+    color: rgb(21, 196, 249);
     text-decoration: none;
 }
 
@@ -38,24 +46,30 @@ section {
 }
 
 footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     background-color: #333;
     color: #fff;
-    padding: 30px;
+    padding: 20px;
     text-align: center;
 }
 
-.content-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 250px); /* Ajusta la altura para centrar verticalmente */
-    width: 150%;
-}
-
-.seccion {
-    height: calc(100vh - 325px);
+.producto {
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
 
 .button-container {
-    margin-left: 20px;
+    top: 20px;
+    margin-left: 15px;
 }
+
+.productos .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+

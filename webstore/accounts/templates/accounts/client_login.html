@@ -9,7 +9,7 @@
 <body>
     <header>
         <div class="page-header">
-            <h1>Web Store</h1>
+            <h1><strong>Tienda San Ricardo</strong></h1>
         </div>
     </header>
     <div class="container">
@@ -19,8 +19,10 @@
         {% endif %}
         <form method="post">
             {% csrf_token %}
-            <label for="username">Nombre de usuario temporal:</label>
-            <input type="text" name="username" required><br>
+            <div class="form-field">
+                <label for="username">Nombre de usuario temporal:</label>
+                <input type="text" name="username" required><br>
+            </div>
             <button type="submit" class="btn btn-primary">Accede como invitado</button>
         </form>
         <a href="{% url 'pag_main' %}" class="btn btn-primary">Volver al inicio</a>
