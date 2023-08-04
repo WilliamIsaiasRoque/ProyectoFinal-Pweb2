@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from .models import Producto, VentaProducto
 
 class PostForm(forms.ModelForm):
-
     class Meta:
         model = Producto
         fields = ['nombre', 'descripcion', 'precio']
