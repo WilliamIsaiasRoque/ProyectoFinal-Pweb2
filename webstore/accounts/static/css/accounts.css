@@ -25,7 +25,7 @@ header {
 .container {
     max-width: 400px;
     text-align: center;
-    margin: 105px auto;
+    margin: 30px auto;
     background-color: rgba(255, 255, 255, 0.8); /* Agrega fondo blanco con opacidad para el contenido */
     border-radius: 60px;
     padding: 25px;
@@ -74,8 +74,13 @@ a {
 .error-message {
     font-weight: bold;
     color: red;
-    position: relative;
-    top: 10px;
+    padding: 33px;
+}
+
+.error-registration {
+    font-weight: bold;
+    color: red;
+    padding-top: 125px;
 }
 
 /* Estilo para el footer */
