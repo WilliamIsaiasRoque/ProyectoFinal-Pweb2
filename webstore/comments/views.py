@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from .models import Comment
 from django.core.mail import send_mail
-from django.views.decorators.csrf import csrf_protect
+from .forms import EmailForm
+from django.contrib import messages
 
 # Create your views here.
 def comment(request):
@@ -22,23 +23,26 @@ def add_comments(request):
     else:
         return JsonResponse({'success': False, 'error': 'Content is required.'})
 
-@csrf_protect 
 def send_email(request):
-    if request.method == "POST":
-        email = request.POST.get('email')
-        subject = request.POST.get('subject')
-        message = request.POST.get('message') + email
+    if request.method == 'POST':
+        form = EmailForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            sender_email = form.cleaned_data['sender_email']
+            message = form.cleaned_data['message']
 
-        try:
-            send_mail(
-                subject,
-                message,
-                'jescobedooc@unsa.edu.pe',  # Reemplaza con la dirección de correo del remitente
-                ['jluislab@gmail.com'],
-                fail_silently=False,
-            )
-            return JsonResponse({'success': True})
-        except Exception as e:
-            return JsonResponse({'success': False, 'error': str(e)})
-    
-    return JsonResponse({'success': False, 'error': 'Invalid request method'})
+            # Agrega aquí la dirección de correo del receptor
+            recipient_email = 'jluisLAB@gmail.com'
+            
+            all_message = f"De: {sender_email}\n\n{message}"
+
+            # Envía el correo
+            send_mail(subject, all_message, sender_email, [recipient_email], fail_silently=False)
+
+            messages.success(request, '¡Correo enviado con éxito!')
+            
+            return redirect('send_email')
+    else:
+        form = EmailForm()
+
+    return render(request, 'send_email.html', {'form': form})
