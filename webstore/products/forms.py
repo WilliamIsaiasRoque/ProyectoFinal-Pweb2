@@ -6,7 +6,12 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Producto
-        fields = ['nombre', 'descripcion','precio']
+        fields = ['nombre', 'descripcion', 'precio']
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
+            'descripcion': forms.Textarea(attrs={'class': 'form-control'}),
+            'precio': forms.NumberInput(attrs={'class': 'form-control'}),
+        }
         
 class VentaProductoForm(forms.ModelForm):
     comprador = forms.ModelChoiceField(queryset=User.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}), empty_label="Seleccione un comprador")
@@ -16,3 +21,8 @@ class VentaProductoForm(forms.ModelForm):
     class Meta:
         model = VentaProducto
         fields = ['producto', 'cantidad', 'comprador']
+        widgets = {
+            'comprador': forms.Select(attrs={'class': 'form-control'}),
+            'cantidad': forms.NumberInput(attrs={'class': 'form-control'}),
+            'producto': forms.Select(attrs={'class': 'form-control'}),
+        }

@@ -4,20 +4,27 @@
     <div class="page-header">
         {% if user.is_staff %}
         <a href="{% url 'sell_new' %}" class="top-menu btn btn-success">Agregar Venta</a>
+        <a href="{% url 'generar_pdf' %}" class="top-menu btn btn-success">Generar PDF de Ventas</a>
         {% endif %}
     </div>
-    {% for sell in sells %} 
-        {% if user.is_staff %}
+    <div class="container">
+        <div class="row">
+        {% for sell in sells %}
+        <div class="col-md-4">
+            {% if user.is_staff %}
                 <a class="btn btn-default" href="{% url 'sell_edit' pk=sell.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
                 <a class="btn btn-default" href="{% url 'sell_delete' pk=sell.pk %}"><span class="glyphicon glyphicon-trash"></span></a>
-        {% endif %}      
-        <div class="venta">
-            <h2>{{ sell.producto.nombre }}</h2>
-            <p>Fecha de venta: {{ sell.fecha_venta }}</p>
-            <p>Precio p/u: {{ sell.producto.precio }}</p>
-            <p>Cantidad vendida: {{ sell.cantidad }}</p>
-            <p>Precio total: {{ sell.precio_total }}</p>
-            <p>Comprador: {{ sell.comprador }}</p>
+            {% endif %}      
+            <div class="venta">
+                <h2>{{ sell.producto.nombre }}</h2>
+                <p>Fecha de venta: {{ sell.fecha_venta }}</p>
+                <p>Precio p/u: {{ sell.producto.precio }}</p>
+                <p>Cantidad vendida: {{ sell.cantidad }}</p>
+                <p>Precio total: {{ sell.precio_total }}</p>
+                <p>Comprador: {{ sell.comprador }}</p>
+            </div>
         </div>
-    {% endfor %}
+        {% endfor %}
+        </div>
+    </div>
 {% endblock %}
