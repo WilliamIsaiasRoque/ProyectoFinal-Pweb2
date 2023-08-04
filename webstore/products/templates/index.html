@@ -13,14 +13,14 @@
 </head>
 <body>
     <div class="page-header">
+        <div class="button-container">
         {% if user.is_authenticated %}
-            <a href="{% url 'logout' %}" class="top-menu">Cerrar Sesión</a>
+           <a href="{% url 'logout' %}" class="top-menu btn btn-warning">Cerrar Sesión</a>
         {% else %}
-            <div class="button-container">
-                <a href="{% url 'login' %}" class="top-menu btn btn-primary">Iniciar Sesión</a>
-                <a href="{% url 'register' %}" class="top-menu btn btn-success">Regístrate</a>
-            </div>
+            <a href="{% url 'login' %}" class="top-menu btn btn-primary">Iniciar Sesión</a>
+            <a href="{% url 'register' %}" class="top-menu btn btn-success">Regístrate</a>
         {% endif %}
+        </div>
     </div>
     <header>
         <div class="page-header">
