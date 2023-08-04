@@ -4,6 +4,8 @@
     <div class="page-header">
         {% if user.is_staff %}
         <a href="{% url 'sell_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+        <a href="{% url 'generar_pdf' %}">Generar PDF de Ventas de Productos</a>
+
         {% endif %}
     </div>
     {% for sell in sells %} 
