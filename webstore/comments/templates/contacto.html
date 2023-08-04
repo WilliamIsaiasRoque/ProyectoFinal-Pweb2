@@ -31,7 +31,7 @@
                         // Append the new comment to the comments list
                         $('#comments-list').append(
                             `<div class="comment">
-                                <strong>${username}</strong>
+                                <strong>${username} : Justo ahora </strong>
                                 <p>${content}</p>
                             </div>`
                         );
@@ -49,10 +49,17 @@
         });
     });
 </script>
-
+{% if user.is_authenticated %}
+<div>
 <form id="comment-form" method="post">
     {% csrf_token %}
     <textarea name="content" rows="4" cols="50" required></textarea>
     <button type="submit">Submit Comment</button>
 </form>
+</div>
+
+<a href="{% url 'send_email' %}" class="top-menu btn btn-warning">Desea enviar Correo?</a>
+
+{% endif %}
+
 {% endblock %}

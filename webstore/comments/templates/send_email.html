@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<h2>Enviar Correo</h2>
+<form method="post">
+  {% csrf_token %}
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-success">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+  {{ form.as_p }}
+  <button type="submit">Enviar</button>
+</form>
+<a href="{% url 'comment' %}" class="top-menu btn btn-warning">Regresar</a>
+
+{% endblock %}
