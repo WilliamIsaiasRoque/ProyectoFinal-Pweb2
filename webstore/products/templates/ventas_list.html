@@ -3,9 +3,7 @@
 {% block content %}
     <div class="page-header">
         {% if user.is_staff %}
-        <a href="{% url 'sell_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-        <a href="{% url 'generar_pdf' %}">Generar PDF de Ventas de Productos</a>
-
+        <a href="{% url 'sell_new' %}" class="top-menu btn btn-success">Agregar Venta</a>
         {% endif %}
     </div>
     {% for sell in sells %} 

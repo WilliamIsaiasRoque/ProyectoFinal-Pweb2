@@ -3,20 +3,24 @@
 {% block content %}
     <div class="page-header">
         {% if user.is_staff %}
-        <a href="{% url 'prod_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+        <a href="{% url 'prod_new' %}" class="top-menu btn btn-primary">Agregar Producto</a>
         {% endif %}
     </div>
-    <div class="seccion">
-    {% for prod in prods %}
-        <div class="producto">
-            {% if user.is_staff %}
-                <a class="btn btn-default" href="{% url 'prod_edit' pk=prod.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-                <a class="btn btn-default" href="{% url 'prod_delete' pk=prod.pk %}"><span class="glyphicon glyphicon-trash"></span></a>
-            {% endif %}
-            <h2>{{ prod.nombre }}</h2>
-            <p>Precio: {{ prod.precio }}</p>
-            <p>Descripción: {{ prod.descripcion }}</p>
+    <div class="container">
+        <div class="row">
+            {% for prod in prods %}
+            <div class="col-md-4">
+                <div class="producto">
+                    {% if user.is_staff %}
+                        <a class="btn btn-default" href="{% url 'prod_edit' pk=prod.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a class="btn btn-default" href="{% url 'prod_delete' pk=prod.pk %}"><span class="glyphicon glyphicon-trash"></span></a>
+                    {% endif %}
+                    <h2>{{ prod.nombre }}</h2>
+                    <p>Precio: {{ prod.precio }}</p>
+                    <p>Descripción: {{ prod.descripcion }}</p>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-    {% endfor %}
     </div>
 {% endblock %}

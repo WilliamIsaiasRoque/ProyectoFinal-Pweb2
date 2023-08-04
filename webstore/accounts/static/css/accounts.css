@@ -71,10 +71,11 @@ a {
 }
 
 /* Estilos para mensajes de error */
-.error-msg {
-    color: red;
+.error-message {
     font-weight: bold;
-    margin-top: 10px;
+    color: red;
+    position: relative;
+    top: 10px;
 }
 
 /* Estilo para el footer */
