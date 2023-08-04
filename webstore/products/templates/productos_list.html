@@ -1,5 +1,4 @@
 {% extends 'index.html' %}
-{% load static %}
 {% block content %}
     <div class="page-header">
         {% if user.is_staff %}
@@ -18,7 +17,7 @@
                     <h2>{{ prod.nombre }}</h2>
                     <p>Precio: {{ prod.precio }}</p>
                     <p>Descripción: {{ prod.descripcion }}</p>
-                    <img src="{{ prod.imagen }}" alt=''>
+                    <img src="{{ prod.imagen.url }}" alt="{{ prod.nombre }}" width="200px" height="200px">
                 </div>
             </div>
             {% endfor %}

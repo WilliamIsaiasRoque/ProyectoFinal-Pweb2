@@ -17,11 +17,11 @@ def prod_detail(request, pk):
 
 def prod_new(request):
     if request.method == "POST":
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             prods = form.save(commit=False)
             prods.save()
-            return redirect('prod_detail', pk=prods.pk)
+            return redirect('prod_list')
     else:
         form = PostForm()
     return render(request, 'productos_edit.html', {'form': form})
