@@ -102,3 +102,13 @@ footer {
     border-color: #007bff;
 }
 
+.custom-input {
+    width: 300px;
+}
+
+.comments-list-container {
+    max-height: 300px; /* Altura máxima del contenedor de comentarios */
+    overflow-y: auto; /* Barra de desplazamiento vertical */
+    border: 1px solid #1a8998; /* Borde alrededor del contenedor de comentarios */
+    padding: 10px; /* Espaciado interno del contenedor de comentarios */
+}

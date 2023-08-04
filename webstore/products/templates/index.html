@@ -30,12 +30,10 @@
     <nav>
         <a href="{% url 'pag_main' %}">INICIO</a>
         <a href="{% url 'prod_list' %}">PRODUCTOS</a>
-        {% if user.is_authenticated %}
         {% if user.is_staff %}
         <a href="{% url 'sell_list' %}">VENTAS</a>
         {% endif %}
-        <a href="{% url 'comment' %}">COMENTARIOS</a>
-        {% endif %}
+        <a href="{% url 'contacto' %}">COMENTARIOS</a>
     </nav>
 
     <div class="productos">

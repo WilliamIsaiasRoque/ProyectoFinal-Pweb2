@@ -1,16 +1,52 @@
 {% extends 'index.html' %}
 
 {% block content %}
-
-<div id="comments-list">
-    {% for comment in comments %}
-        <div class="comment">
-            <strong>{{ comment.user.username }} : {{comment.created_at}}</strong>
-            <p>{{ comment.content }}</p>
+{% if user.is_authenticated %}
+<div class="page-header">
+    <div class="row">
+    
+    <a href="{% url 'send_email' %}" class="top-menu btn btn-warning mt-2">Desea enviar Correo?</a>
+        <form id="comment-form" method="post" class="form-inline">
+            {% csrf_token %}
+            <input name="content" id="comment-input" style="width: 300px; font-size: 16px;" required class="form-control mr-sm-2" placeholder="Write your comment...">
+            <button type="submit" class="btn btn-outline-success my-2 my-sm-0 mt-2">Submit Comment</button>
+        </form>    
+    </div>
+</div>
+{% endif %}
+<div class="content-container">
+    <section>
+        <div class="comments-container">
+            <div class="comments-list-container">
+                <div class="comments-list" id="comments-list">
+                <!-- Comments will be added dynamically here -->
+                </div>
+            </div>
         </div>
-    {% endfor %}
+    </section>
 </div>
 <script>
+    function clearInput() {
+        document.getElementById('comment-input').value = ''; // Limpia el contenido del input
+    }
+
+    function updateCommentsList(comments) {
+        const commentsListContainer = document.getElementById('comments-list');
+        commentsListContainer.innerHTML = ''; // Limpiar la lista de comentarios
+
+        comments.forEach(comment => {
+            const { username, created_at, content } = comment;
+            const commentElement = `
+                <div class="comment card mb-3">
+                    <div class="card-body">
+                        <strong>${username} : ${created_at}</strong>
+                        <p class="card-text">${content}</p>
+                    </div>
+                </div>`;
+            commentsListContainer.insertAdjacentHTML('beforeend', commentElement);
+        });
+    }
+
     $(document).ready(function() {
         // Handle form submission via AJAX
         $('#comment-form').submit(function(event) {
@@ -23,21 +59,13 @@
                 dataType: 'json',
                 success: function(data) {
                     if (data.success) {
-                        // Comment was added successfully, update the page
-                        const commentId = data.comment_id;
-                        const content = $('textarea[name="content"]').val();
-                        const username = '{{ user.username }}';
+                        // Clear the input
+                        $('input[name="content"]').val('');
 
-                        // Append the new comment to the comments list
-                        $('#comments-list').append(
-                            `<div class="comment">
-                                <strong>${username} : Justo ahora </strong>
-                                <p>${content}</p>
-                            </div>`
-                        );
-
-                        // Clear the textarea
-                        $('textarea[name="content"]').val('');
+                        // Update comments list with the new comment
+                        $.get('{% url "comment" %}', function(data) {
+                            updateCommentsList(data);
+                        });
                     } else {
                         alert('Error: ' + data.error);
                     }
@@ -47,19 +75,11 @@
                 }
             });
         });
+
+        // Initialize comments list on page load
+        $.get('{% url "comment" %}', function(data) {
+            updateCommentsList(data);
+        });
     });
 </script>
-{% if user.is_authenticated %}
-<div>
-<form id="comment-form" method="post">
-    {% csrf_token %}
-    <textarea name="content" rows="4" cols="50" required></textarea>
-    <button type="submit">Submit Comment</button>
-</form>
-</div>
-
-<a href="{% url 'send_email' %}" class="top-menu btn btn-warning">Desea enviar Correo?</a>
-
-{% endif %}
-
 {% endblock %}

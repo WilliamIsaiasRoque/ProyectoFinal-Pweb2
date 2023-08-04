@@ -6,9 +6,14 @@ from .forms import EmailForm
 from django.contrib import messages
 
 # Create your views here.
-def comment(request):
-    comments = Comment.objects.all()
+def contacto(request):
+    comments = Comment.objects.all().order_by('-created_at')
     return render(request, 'contacto.html', {'comments': comments})
+
+def comment(request):
+    comments = Comment.objects.all().order_by('-created_at')
+    data = [{'username': comment.user.username, 'created_at': comment.created_at, 'content': comment.content} for comment in comments]
+    return JsonResponse(data, safe=False)
 
 def form_comment(request):
     return render(request, 'comentario_form.html')
