@@ -1,9 +1,10 @@
 {% extends 'index.html' %}
 
 {% block content %}
-    <h2>Delete post?</h2>
+    <h2>¿Eliminar producto?</h2>
     <form method="POST" class="post-form">{% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Delete</button>
+        <button type="submit" class="save btn btn-danger">Eliminar</button>
+        <a href="{% url 'prod_list' %}" class="btn btn-info">No eliminar</a>
     </form>
 {% endblock %}
