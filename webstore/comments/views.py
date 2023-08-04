@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from .models import Comment
-from .forms import EmailForm
+from django.core.mail import send_mail
+from django.views.decorators.csrf import csrf_protect
 
 # Create your views here.
 def comment(request):
@@ -20,14 +21,24 @@ def add_comments(request):
         return JsonResponse({'success': True, 'comment_id': comment.id})
     else:
         return JsonResponse({'success': False, 'error': 'Content is required.'})
-    
-def send_email(request):
-    if request.method == 'POST':
-        form = EmailForm(request.POST)
-        if form.is_valid():
-            form.save()
-            # Agregar el código de envío de correo si lo deseas
-    else:
-        form = EmailForm()
 
-    return render(request, 'send/send_email.html', {'form': form})
+@csrf_protect 
+def send_email(request):
+    if request.method == "POST":
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message') + email
+
+        try:
+            send_mail(
+                subject,
+                message,
+                'jescobedooc@unsa.edu.pe',  # Reemplaza con la dirección de correo del remitente
+                ['jluislab@gmail.com'],
+                fail_silently=False,
+            )
+            return JsonResponse({'success': True})
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)})
+    
+    return JsonResponse({'success': False, 'error': 'Invalid request method'})

@@ -50,18 +50,24 @@
     });
 </script>
 {% if user.is_authenticated %}
+<div>
 <form id="comment-form" method="post">
     {% csrf_token %}
     <textarea name="content" rows="4" cols="50" required></textarea>
     <button type="submit">Submit Comment</button>
 </form>
-
-<h1>Enviar correo</h1>
-  <form method="post">
+</div>
+<div>
+<form id="email-form" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Enviar</button>
-  </form>
+    <label for="subject">Subject:</label>
+    <input type="text" name="subject" required>
+    <label for="message">Message:</label>
+    <textarea name="message" rows="4" cols="50" required></textarea>
+    <button type="submit">Send Email</button>
+</form>
+</div>
+
 {% endif %}
 
 {% endblock %}

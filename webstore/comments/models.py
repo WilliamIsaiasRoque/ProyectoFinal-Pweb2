@@ -11,8 +11,3 @@ class Comment(models.Model):
     def __str__(self):
         return f"{self.user.username} - {self.content[:50]}"
 
-class EmailMessage(models.Model):
-    subject = models.CharField(max_length=100)
-    message = models.TextField()
-    sender_email = models.EmailField()
-    recipient_email = models.EmailField()
