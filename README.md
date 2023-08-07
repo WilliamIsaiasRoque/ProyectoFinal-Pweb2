@@ -74,7 +74,7 @@
 [![Java][Java]][java-site]
 
 ##  Tipo de Sistema
-    Se trata de una aplicación web construida con el framework Django 4, que permita la inscripción de los alumnos en los horarios de laboratorios establecidos cada inicio de semestre.
+    Se trata de una aplicación web construida con el framework Django 4, que permita la venta de productos de una forma más sencilla.
 
 ##  Requisitos del sistema
     El sistema debe satisfacer los siguientes requisitos funcionales y no funcionales:
@@ -475,8 +475,11 @@ Github del proyecto: https://github.com/WilliamIsaiasRoque/ProyectoFinal-Pweb2.g
 
 URL Playlist YouTube.
 Producción de un PlayList en Youtube explicando cada una de los requerimientos.
-Video 01 - Sistema - Requisitos.
-Video 02 - Modelo de datos - DD - DER.
+Video 01 - Accounts.
+Video 02 - Productos.
+Video 03 - Ventas.
+Video 04 - Comments.
+Video 05 - PDFs.
 etc…
 
 
